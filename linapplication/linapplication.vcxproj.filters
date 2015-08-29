@@ -50,6 +50,21 @@
     <ClCompile Include="GeneratedFiles\qrc_linapplication.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="LOption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LIOObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ldlgbasename.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ldlgbasename.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ldlgbasename.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="linapplication.h">
@@ -61,9 +76,24 @@
     <CustomBuild Include="linapplication.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="ldlgbasename.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ldlgbasename.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_linapplication.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LIOObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ldlgbasename.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

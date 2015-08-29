@@ -12,6 +12,8 @@ public:
 	linapplication(QWidget *parent = 0);
 	~linapplication();
 
+public slots:
+	void slotOnBasename();
 private:
 	Ui::linapplicationClass ui;
 };
