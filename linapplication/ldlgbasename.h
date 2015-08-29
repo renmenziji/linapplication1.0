@@ -16,6 +16,7 @@ public:
 	void slotOnFolder1();
 	void slotOnFolder2();
 	void slotOnSync();
+	void slotOnDelete();
 private:
 	Ui::LDLgBasename ui;
 };

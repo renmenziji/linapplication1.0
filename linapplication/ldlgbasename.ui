@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>457</width>
-    <height>385</height>
+    <width>1117</width>
+    <height>671</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,21 @@
    <item row="1" column="1" colspan="2">
     <widget class="QLineEdit" name="lineEditFolder2"/>
    </item>
-   <item row="2" column="0" colspan="2">
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pushButtonDelete">
+     <property name="text">
+      <string>Delete</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="pushButtonSync">
+     <property name="text">
+      <string>Sync</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
     <widget class="QTextEdit" name="textEdit">
      <property name="html">
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -44,13 +58,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tip:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;After I delete the JPG images,I use this to delte the NEF images in other folder.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;当我删除JPG后，调用此程序，删除对应的NEF文件&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="pushButtonSync">
-     <property name="text">
-      <string>Sync</string>
      </property>
     </widget>
    </item>

@@ -11,6 +11,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTextEdit>
 #include <QStandardItemModel>
 #include <QTableWidget>
 #include <QTableWidgetItem>
