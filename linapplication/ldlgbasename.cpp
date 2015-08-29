@@ -4,15 +4,30 @@ LDLgBasename::LDLgBasename(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
+	setAttribute(Qt::WA_DeleteOnClose, true);
 	connect(ui.pushButtonFolder1, SIGNAL(clicked()), this, SLOT(slotOnFolder1()));
 	connect(ui.pushButtonFolder2, SIGNAL(clicked()), this, SLOT(slotOnFolder2()));
 	connect(ui.pushButtonSync, SIGNAL(clicked()), this, SLOT(slotOnSync()));
 	connect(ui.pushButtonDelete, SIGNAL(clicked()), this, SLOT(slotOnDelete()));
+
+	QSettings settings("lin", "linapplication");
+	if (settings.contains("LDLgBasename/geometry"))
+	{
+		this->restoreGeometry(settings.value("LDLgBasename/geometry").toByteArray());
+		//ui.tableWidget->restoreGeometry(settings.value("LDLgBasename/geometry_tableWidget").toByteArray());
+		ui.lineEditFolder1->setText(settings.value("LDLgBasename/folder1").toString());
+		ui.lineEditFolder2->setText(settings.value("LDLgBasename/folder2").toString());
+	}
 }
 
 LDLgBasename::~LDLgBasename()
 {
 
+	QSettings settings("lin", "linapplication");
+	settings.setValue("LDLgBasename/geometry", saveGeometry());
+	//settings.setValue("LDLgBasename/geometry_tableWidget", ui.tableWidget->saveGeometry());
+	settings.setValue("LDLgBasename/folder1", ui.lineEditFolder1->text());
+	settings.setValue("LDLgBasename/folder2", ui.lineEditFolder2->text());
 }
 
 void LDLgBasename::slotOnFolder1()
