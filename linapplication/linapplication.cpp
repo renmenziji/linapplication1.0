@@ -5,7 +5,7 @@ linapplication::linapplication(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	connect(ui.action_basename, SIGNAL(active()), this, SLOT(slotOnBasename()));
+	connect(ui.action_basename, SIGNAL(triggered()), this, SLOT(slotOnBasename()));
 }
 
 linapplication::~linapplication()

@@ -96,6 +96,9 @@
     <ClInclude Include="GeneratedFiles\ui_ldlgbasename.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="qinclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="linapplication.rc" />
