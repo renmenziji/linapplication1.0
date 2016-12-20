@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_basename">
@@ -28,6 +28,12 @@
      <string>fle</string>
     </property>
     <addaction name="action_basename"/>
+    <addaction name="actionChangefile"/>
+    <addaction name="actionChange_HANDVEL_type"/>
+    <addaction name="actionChangefile2"/>
+    <addaction name="actionchangeTops"/>
+    <addaction name="actionChangeDXDY2Angle"/>
+    <addaction name="actionTiqu"/>
    </widget>
    <addaction name="menu_basename"/>
   </widget>
@@ -43,6 +49,36 @@
   <action name="action_basename">
    <property name="text">
     <string>两文件夹去除多余basename文件</string>
+   </property>
+  </action>
+  <action name="actionChangefile">
+   <property name="text">
+    <string>changefile SPNT</string>
+   </property>
+  </action>
+  <action name="actionChangefile2">
+   <property name="text">
+    <string>速度谱格式文件转换</string>
+   </property>
+  </action>
+  <action name="actionchangeTops">
+   <property name="text">
+    <string>特殊格式层位excel转txt</string>
+   </property>
+  </action>
+  <action name="actionChangeDXDY2Angle">
+   <property name="text">
+    <string>转dxdy的文件为倾角方位角</string>
+   </property>
+  </action>
+  <action name="actionChange_HANDVEL_type">
+   <property name="text">
+    <string>change HANDVEL type</string>
+   </property>
+  </action>
+  <action name="actionTiqu">
+   <property name="text">
+    <string>提取多uwi为单独文件</string>
    </property>
   </action>
  </widget>

@@ -13,7 +13,13 @@ public:
 	~linapplication();
 
 public slots:
-	void slotOnBasename();
+void slotOnBasename();
+void slotOnChangefile();
+void slotOnChangefile2();
+void slotOnactionChange_HANDVEL_type();
+void slotOnChangeTops();
+void slotOnChangeDXDY2Angle();
+void slotTiqu();
 private:
 	Ui::linapplicationClass ui;
 };
