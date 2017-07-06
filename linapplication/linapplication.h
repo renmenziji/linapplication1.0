@@ -15,10 +15,11 @@ public:
 public slots:
 void slotOnBasename();
 void slotOnChangefile();
-void slotOnChangefile2();
+void slotOnChangefile2();//速度谱格式文件转换
 void slotOnactionChange_HANDVEL_type();
 void slotOnChangeTops();
 void slotOnChangeDXDY2Angle();
+void slotOnChangeGss2InlineXlineTimeValue();//转换gss文件为InlineCmpTimeValue
 void slotTiqu();
 private:
 	Ui::linapplicationClass ui;

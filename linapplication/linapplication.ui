@@ -20,12 +20,12 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_basename">
     <property name="title">
-     <string>fle</string>
+     <string>File</string>
     </property>
     <addaction name="action_basename"/>
     <addaction name="actionChangefile"/>
@@ -34,6 +34,7 @@
     <addaction name="actionchangeTops"/>
     <addaction name="actionChangeDXDY2Angle"/>
     <addaction name="actionTiqu"/>
+    <addaction name="actionSdf"/>
    </widget>
    <addaction name="menu_basename"/>
   </widget>
@@ -79,6 +80,11 @@
   <action name="actionTiqu">
    <property name="text">
     <string>提取多uwi为单独文件</string>
+   </property>
+  </action>
+  <action name="actionSdf">
+   <property name="text">
+    <string>转换gss文件为InlineCmpTimeValue</string>
    </property>
   </action>
  </widget>

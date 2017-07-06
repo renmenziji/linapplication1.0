@@ -82,9 +82,6 @@
     <CustomBuild Include="ldlgbasename.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="ldlgchangeexceltops.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_linapplication.h">
@@ -101,9 +98,6 @@
     </ClInclude>
     <ClInclude Include="qinclude.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_ldlgchangeexceltops.h">
-      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

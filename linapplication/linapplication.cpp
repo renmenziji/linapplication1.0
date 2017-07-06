@@ -18,6 +18,7 @@ linapplication::linapplication(QWidget *parent)
 	connect(ui.actionChange_HANDVEL_type, SIGNAL(triggered()), this, SLOT(slotOnactionChange_HANDVEL_type()));
 	connect(ui.actionchangeTops, SIGNAL(triggered()), this, SLOT(slotOnChangeTops()));
 	connect(ui.actionChangeDXDY2Angle, SIGNAL(triggered()), this, SLOT(slotOnChangeDXDY2Angle()));
+	connect(ui.actionSdf, SIGNAL(triggered()), this, SLOT(slotOnChangeGss2InlineXlineTimeValue()));
 	connect(ui.actionTiqu, SIGNAL(triggered()), this, SLOT(slotTiqu()));
 }
 
@@ -177,7 +178,7 @@ void linapplication::slotOnactionChange_HANDVEL_type()
 	}
 	fileOut.close();
 }
-void linapplication::slotOnChangefile2()
+void linapplication::slotOnChangefile2()//速度谱格式文件转换
 {
 	QString strFileIn = QFileDialog::getOpenFileName();
 	if (strFileIn.isEmpty())
@@ -257,7 +258,7 @@ struct CItemTop
 
 
 
-#include "ui_ldlgchangeexceltops.h"
+//#include "ui_ldlgchangeexceltops.h"
 void linapplication::slotOnChangeTops()
 {
 	int i, j;
@@ -305,19 +306,21 @@ void linapplication::slotOnChangeTops()
 			return;
 		}
 
-		QDialog dlgset(this);
-		Ui_LDLgChangeExcelTops uidlgset;
-		uidlgset.setupUi(&dlgset);
-		if (dlgset.exec()!=QDialog::Accepted)
-		{
-			work_book->dynamicCall("Close(Boolean)", false);  //关闭文件
-			excel.dynamicCall("Quit(void)");  //退出
-			return;
-		}
-		posTops.setX(uidlgset.m_pEdtFirstTopRow->text().toInt());
-		posTops.setY(uidlgset.m_pEdtFirstTopCol->text().toInt());
-		posWell.setX(uidlgset.m_pEdtFirstWellRow->text().toInt());
-		posWell.setY(uidlgset.m_pEdtFirstWellCol->text().toInt());
+
+		//lint
+		//QDialog dlgset(this);
+		//Ui_LDLgChangeExcelTops uidlgset;
+		//uidlgset.setupUi(&dlgset);
+		//if (dlgset.exec()!=QDialog::Accepted)
+		//{
+		//	work_book->dynamicCall("Close(Boolean)", false);  //关闭文件
+		//	excel.dynamicCall("Quit(void)");  //退出
+		//	return;
+		//}
+		//posTops.setX(uidlgset.m_pEdtFirstTopRow->text().toInt());
+		//posTops.setY(uidlgset.m_pEdtFirstTopCol->text().toInt());
+		//posWell.setX(uidlgset.m_pEdtFirstWellRow->text().toInt());
+		//posWell.setY(uidlgset.m_pEdtFirstWellCol->text().toInt());
 
 		sheet_count = lstWorkSheets.indexOf(getname)+1;
 
@@ -563,6 +566,102 @@ void linapplication::slotOnChangeDXDY2Angle()
 
 }
 
+struct CLineCmpTimeValue
+{
+	double Line;
+	double Cmp;
+	double Time;
+	double Value;
+};
+void ChangeGss2InlineXlineTimeValue(QString strFileName)
+{
+	QFile file(strFileName);
+	if (!file.open(QFile::ReadOnly))
+	{
+		return;
+	}
+	QFile fileOut(strFileName + ".out");
+	if (!fileOut.open(QFile::WriteOnly))
+	{
+		return;
+	}
+
+	QList<CLineCmpTimeValue> lstDatas;
+	int dataLine = 0;
+
+		//: DBAVI      VN01, VTYPE : VRMS,
+		//	LINE200,
+		//	CMP300, X0, Y0, DACT0,
+		//	T16V2090, T317V2377, T507V2553,
+		//	T641V2677, T849V2770, T1055V2883,
+		//	T1261V3017, T1501V3167, T1628V3220,
+		//	T1909V3310, T2111V3340, T2311V3563,
+		//	T2529V3817, T3039V4453, T3497V4927,
+		//	T4279V5513, T5934V6523,
+		//	VF6500,
+		//	CMP310, X0, Y0, DACT0,
+		//	T16V2108, T317V2418, T507V2595,
+		//	T641V2713, T849V2798, T1055V2892,
+		//	T1261V3012, T1501V3172, T1628V3220,
+		//	T1909V3308, T2111V3346, T2311V3535,
+		//	T2529V3804, T3039V4453, T3497V4927,
+		//	T4279V5517, T5934V6516,
+		//	VF6500,
+
+	CLineCmpTimeValue data0;
+	QString strLine = file.readAll();
+	char t = 32;
+	strLine = strLine.simplified().remove(t);
+	file.close();
+	QStringList lstAllRead= strLine.simplified().split(",");
+	int i;
+	for ( i = 0; i < lstAllRead.count(); i++)
+	{
+		QString strLine = lstAllRead[i].toLower();
+
+		QString sss = strLine.left(1);
+		if (strLine.contains("line"))
+		{
+			data0.Line = strLine.remove("line").toDouble();
+		}
+		else if (strLine.contains("cmp"))
+		{
+			data0.Cmp = strLine.remove("cmp").toDouble();
+		}
+		else if (strLine.left(1) == "t" && strLine.contains("v"))
+		{
+			QStringList lst = strLine.remove("t").split("v");
+
+			data0.Time = lst[0].toDouble();
+			data0.Value = lst[1].toDouble();
+			lstDatas.append(data0);
+		}
+	}
+
+
+	QTextStream ts(&fileOut);
+	ts << "line \t cmp \t time \t value\n";
+	for (i = 0; i < lstDatas.count(); i++)
+	{
+		ts << QString::number(lstDatas[i].Line) << "\t"
+			<< QString::number(lstDatas[i].Cmp) << "\t" 
+			<< QString::number(lstDatas[i].Time) << "\t"
+			<< QString::number(lstDatas[i].Value) << "\t"
+			<<"\n"
+			;
+	}
+
+	fileOut.close();
+}
+void linapplication::slotOnChangeGss2InlineXlineTimeValue()//转换gss文件为InlineCmpTimeValue
+{
+	QStringList lstfile = QFileDialog::getOpenFileNames(this, "", "");
+	for (int i = 0; i < lstfile.count();i++)
+	{
+		ChangeGss2InlineXlineTimeValue(lstfile[i]);
+	}
+
+}
 struct CWellbyUwi
 {
 	QString name;
